@@ -1,0 +1,3 @@
+[submodule "drupal/core"]
+	path = drupal/core
+	url = git@github.com:xtuple/drupal.git

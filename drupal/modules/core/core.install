@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Disable Drupal Commerce
+ */
+function core_update_7001() {
+  module_disable([
+    'addressfield',
+    'entity_token',
+    'rules',
+    'rules_admin',
+    'commerce',
+    'commerce_cart',
+    'commerce_checkout',
+    'commerce_customer',
+    'commerce_customer_ui',
+    'commerce_line_item',
+    'commerce_order',
+    'commerce_order_ui',
+    'commerce_payment',
+    'commerce_payment_ui',
+    'commerce_price',
+    'commerce_product',
+    'commerce_product_pricing',
+    'commerce_product_pricing_ui',
+    'commerce_product_reference',
+    'commerce_product_ui',
+    'commerce_shipping',
+    'commerce_ui',
+  ]);
+  return \xdruple_application()->services()->locale()->t('Drupal Commerce modules disabled');
+}
+
+/**
+ * Disable XMLSitemap
+ */
+function core_update_7002() {
+  module_disable([
+    'xmlsitemap',
+    'xmlsitemap_engines',
+    'xmlsitemap_node',
+  ]);
+  drupal_uninstall_modules([
+    'xmlsitemap',
+    'xmlsitemap_engines',
+    'xmlsitemap_node',
+  ]);
+  return \xdruple_application()->services()->locale()->t('XMLSitemap modules disabled');
+}

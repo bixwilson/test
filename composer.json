@@ -1,0 +1,33 @@
+{
+  "name": "xtuple/commerce/flywheel",
+  "type": "project",
+  "description": "xTuple Commerce Flywheel project",
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-0": {
+      "": "src/"
+    }
+  },
+  "require": {
+    "profiles/xdruple": "dev-master"
+  },
+  "require-dev": {
+    "composer/composer": "^1.0",
+    "phpunit/phpunit": "^6.0",
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpmd/phpmd": "^2.6"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:xtuple/xdruple.git"
+    }
+  ],
+  "extra": {
+    "installer-paths": {
+      "drupal/{$name}": [
+        "profiles/xdruple"
+      ]
+    }
+  }
+}

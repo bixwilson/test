@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema targetNamespace="https://xdruple.xtuple.com/schema/application"
+           xmlns="https://xdruple.xtuple.com/schema/application"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:complexType name="bundle">
+    <xs:complexContent>
+      <xs:extension base="xs:complexType">
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="bundles">
+    <xs:sequence>
+      <xs:element name="bundle" type="bundle" minOccurs="0" maxOccurs="unbounded" block="extension"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="configuration">
+    <xs:sequence>
+      <xs:element type="variable" name="variable" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="environment">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="development"/>
+      <xs:enumeration value="stage"/>
+      <xs:enumeration value="production"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="permission">
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="permissions">
+    <xs:sequence>
+      <xs:element type="permission" name="permission" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="role">
+    <xs:complexContent>
+      <xs:extension base="xs:complexType">
+        <xs:sequence>
+          <xs:element name="grant" type="permissions" minOccurs="0"/>
+          <xs:element name="revoke" type="permissions" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="roles">
+    <xs:sequence>
+      <xs:element type="role" name="role" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="variable">
+    <xs:complexContent>
+      <xs:extension base="xs:complexType">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="xtuple">
+    <xs:attribute name="application" type="xs:string"/>
+    <xs:attribute name="host" type="xs:string"/>
+    <xs:attribute name="database" type="xs:string"/>
+    <xs:attribute name="iss" type="xs:string"/>
+    <xs:attribute name="key" type="xs:string"/>
+    <xs:attribute name="debug" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:element name="application">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="bundles" type="bundles" minOccurs="0"/>
+        <xs:element name="configuration" type="configuration" minOccurs="0"/>
+        <xs:element name="roles" type="roles" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

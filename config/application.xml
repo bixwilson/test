@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<application xmlns="https://xdruple.xtuple.com/schema/application"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://xdruple.xtuple.com/schema/application schema/application.xsd">
+  <bundles>
+    <bundle type="node" name="article"/>
+    <bundle type="node" name="faq">
+      <categories required="true" cardinality="1"/>
+    </bundle>
+    <bundle type="node" name="form">
+      <node>
+        <menus>
+          <menu>main-menu</menu>
+          <menu>secondary-menu</menu>
+          <menu>user-menu</menu>
+        </menus>
+      </node>
+    </bundle>
+    <bundle type="node" name="page">
+      <node>
+        <menus>
+          <menu>main-menu</menu>
+          <menu>secondary-menu</menu>
+          <menu>user-menu</menu>
+        </menus>
+      </node>
+    </bundle>
+    <bundle type="node" name="promo">
+      <image_styles>
+        <image_style name="carousel_promo_header_image_style" width="1140" height="380"/>
+        <image_style name="grid_promo_default_image_style" width="350" height="230"/>
+        <image_style name="icon_promo_default_image_style" width="64" height="64" upscale="false"/>
+        <image_style name="teaser_promo_default_image_style" width="350" upscale="false"/>
+      </image_styles>
+    </bundle>
+    <bundle type="node" name="testimonial"/>
+  </bundles>
+  <configuration>
+    <variable name="date_default_timezone">America/New_York</variable>
+    <variable name="xdruple_checkout_anonymous">true</variable>
+    <variable name="user_register">1</variable>
+  </configuration>
+</application>

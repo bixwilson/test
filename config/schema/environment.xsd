@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema targetNamespace="https://xdruple.xtuple.com/schema/environment"
+           xmlns="https://xdruple.xtuple.com/schema/environment"
+           xmlns:application="https://xdruple.xtuple.com/schema/application"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://xdruple.xtuple.com/schema/application application.xsd"
+           elementFormDefault="qualified">
+  <xs:simpleType name="type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="development"/>
+      <xs:enumeration value="stage"/>
+      <xs:enumeration value="production"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="xtuple">
+    <xs:attribute name="application" type="xs:string"/>
+    <xs:attribute name="host" type="xs:string"/>
+    <xs:attribute name="database" type="xs:string"/>
+    <xs:attribute name="iss" type="xs:string"/>
+    <xs:attribute name="key" type="xs:string"/>
+    <xs:attribute name="debug" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="environment">
+    <xs:sequence>
+      <xs:element name="xtuple" type="xtuple"/>
+      <xs:element name="configuration" type="application:configuration" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="environment">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="environment">
+          <xs:attribute type="type" name="type" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
